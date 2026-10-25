@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #F5F4EC;
+  --color-pitch: #111111;
+  --color-lime: #D7FF00;
+  --color-red: #FF3B30;
+  --color-cobalt: #244CFF;
+  --color-concrete: #C8C8C0;
+  --color-graphite: #343434;
+  --color-pure: #FFFFFF;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-pitch);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 3px solid var(--color-cobalt);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-lime);
+  color: var(--color-pitch);
+}
+
+/* Ticker animation */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: ticker 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker {
+    animation: none;
+  }
+}
+
+/* Reveal animations */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes reveal-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes reveal-scale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-pitch);
+  border: 2px solid var(--color-paper);
+}
+
+/* Utility classes */
+.border-brutal {
+  border-width: 3px;
+  border-color: var(--color-pitch);
+}
+
+.border-brutal-thick {
+  border-width: 4px;
+  border-color: var(--color-pitch);
+}
+
+/* No horizontal overflow */
+.page-wrapper {
+  overflow-x: clip;
+}
